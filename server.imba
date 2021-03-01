@@ -29,10 +29,11 @@ def pick-key
 # catch-all route that returns our index.html
 app.get(/.*/) do(req,res)
 	let url = new URL(base)
-	let search = new URLSearchParams(req.query)
 	url.pathname = req.path
-	search.append('appid', pick-key!)
-	url.search = search
+	if process.env.API_AUTH_TYPE == 'query'
+		let search = new URLSearchParams(req.query)
+		search.append(process.env.API_AUTH_KEY, pick-key!)
+		url.search = search
 	console.log 'fetching from', url.href
 	let options = {}
 	let payload = await node-fetch(url, options)
