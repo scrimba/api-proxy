@@ -2,11 +2,21 @@
 
 This project was bootstrapped with [imba-base-template](https://github.com/imba/imba-base-template).
 
-It aims to be a generic proxy for api´s where you can inject api keys / authentication without exposing it to the requester. It uses dotenv to define it´s workings.
+It aims to be a generic proxy for api´s where you can inject api keys / authentication without exposing it to the requester. It uses dotenv to define it´s workings. 
 
-    `api_base`: The root url to proxy - for example `https://api.openweathermap.org`
-    `api_keys`: A comma separated list of api keys.
+1. Copy .env-example to .env and set the env vars to fit the api of choice
 
+    `API_BASE`: The root url to proxy - for example `https://api.openweathermap.org`
+    `API_KEYS`: A comma separated list of api keys.
+    `API_AUTH_TYPE`: `query` / `bearer` / `header`
+    `API_AUTH_KEY`: `appid`, `client_id`
+    `PORT`: 3000
+
+2. Copy example-pm2.json to pm2.json and set the fields to the values of choice.
+
+3. To run:
+    In dev: Run `imba -w server.imba`
+    In prod: Run `pm2 start pm2.json` to start the api under pm2
 
 ## Available Scripts
 
