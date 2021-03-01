@@ -1,0 +1,22 @@
+{
+  "name": "api-proxy",
+  "scripts": {
+    "start": "imba -w server.imba",
+    "build": "imba build server.imba"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "imba": "^2.0.0-alpha.127",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22"
+  },
+  "repository": "scrimba/api-proxy",
+  "description": "A proxy and api key injector",
+  "version": "1.0.0",
+  "homepage": "https://github.com/scrimba/api-proxy",
+  "author": "Frode Jensen @ scrimba (https://github.com/scrimba)",
+  "license": "ISC"
+}
