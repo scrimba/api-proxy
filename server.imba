@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import node-fetch from 'node-fetch'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -26,6 +27,8 @@ def pick-key
 		key-index = 0
 	keys[key-index]
 
+app.use(cors!)
+
 # catch-all route that returns our index.html
 app.get(/.*/) do(req,res)
 	let url = new URL(base)
@@ -42,5 +45,6 @@ app.get(/.*/) do(req,res)
 		res.json(data)
 	catch e
 		res.status(404).send('Not found')
+
 console.log "Starting api wrapper for {base} with {keys.length} api keys"
 imba.serve app.listen(process.env.PORT or 3000)
