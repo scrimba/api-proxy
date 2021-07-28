@@ -1,4 +1,6 @@
 import express from 'express'
+import body-parser from 'express'
+
 import dotenv from 'dotenv'
 import node-fetch from 'node-fetch'
 import cors from 'cors'
@@ -28,18 +30,37 @@ def pick-key
 	keys[key-index]
 
 app.use(cors!)
+app.use(body-parser.text({ type: 'text/html' }))
+app.use(body-parser.json({ type: 'application/json' }))
+
+app.get('/') do(req,res,next)
+	res.format
+		json: do next()
+		html: do res.send(docs)
 
 # catch-all route that returns our index.html
-app.get(/.*/) do(req,res)
+app.all(/.*/) do(req,res)
 	let url = new URL(base)
 	url.pathname = req.path
+	let options = {}
+	let headers = 
+		'Content-Type': req.headers['content-type']
+	
+	let body = req.headers['content-type'] == 'application/json' ? JSON.stringify(req.body) : req.body
 	if process.env.API_AUTH_TYPE == 'query'
 		let search = new URLSearchParams(req.query)
 		search.append(process.env.API_AUTH_KEY, pick-key!)
 		url.search = search
 	console.log 'fetching from', url.href
-	let options = {}
-	let payload = await node-fetch(url, options)
+	
+	if process.env.API_AUTH_TYPE == 'bearer'
+		headers.authorization = "Bearer {pick-key!}";
+	
+	let payload = await node-fetch(url,
+		method: req.method
+		body: ['POST', 'PUT'].includes(req.method) ? body : undefined
+		headers: headers
+		options: options)
 	try
 		let data = await payload.json!
 		res.json(data)
