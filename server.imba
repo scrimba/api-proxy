@@ -5,6 +5,8 @@ import dotenv from 'dotenv'
 import node-fetch from 'node-fetch'
 import cors from 'cors'
 
+import docs from './docs'
+
 dotenv.config()
 
 const app = express!
