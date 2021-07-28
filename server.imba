@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import node-fetch from 'node-fetch'
 import cors from 'cors'
 
-import docs from './docs'
+import './docs'
 
 dotenv.config()
 
@@ -38,7 +38,9 @@ app.use(body-parser.json({ type: 'application/json' }))
 app.get('/') do(req,res,next)
 	res.format
 		json: do next()
-		html: do res.send(docs)
+		html: do 
+			let out = <docs-page>
+			res.send String(out)
 
 # catch-all route that returns our index.html
 app.all(/.*/) do(req,res)
