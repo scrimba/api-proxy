@@ -59,7 +59,10 @@ app.all(/.*/) do(req,res)
 	
 	if process.env.API_AUTH_TYPE == 'bearer'
 		headers.authorization = "Bearer {pick-key!}";
-	
+
+	if process.env.OPEN_AI_ORG # Should handle any extra header at some point.
+		headers['OpenAI-Organization'] = process.env.OPEN_AI_ORG
+
 	let payload = await node-fetch(url,
 		method: req.method
 		body: ['POST', 'PUT'].includes(req.method) ? body : undefined

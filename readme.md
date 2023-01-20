@@ -1,8 +1,6 @@
 # Getting Started
 
-This project was bootstrapped with [imba-base-template](https://github.com/imba/imba-base-template).
-
-It aims to be a generic proxy for api´s where you can inject api keys / authentication without exposing it to the requester. It uses dotenv to define it´s workings. 
+This repo aims to be a generic proxy for api´s where you can inject api keys / authentication without exposing it to the requester. It uses dotenv to define it´s workings. 
 
 1. Copy .env-example to .env and set the env vars to fit the api of choice
 
@@ -10,6 +8,7 @@ It aims to be a generic proxy for api´s where you can inject api keys / authent
     `API_KEYS`: A comma separated list of api keys.
     `API_AUTH_TYPE`: `query` / `bearer` / `header`
     `API_AUTH_KEY`: `appid`, `client_id`
+    `OPEN_AI_ORG`: The organization ID for your account in openAI
     `PORT`: 3000
 
 2. Copy example-pm2.json to pm2.json and set the fields to the values of choice.
