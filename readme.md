@@ -8,7 +8,7 @@ This repo aims to be a generic proxy for api´s where you can inject api keys / 
     `API_KEYS`: A comma separated list of api keys.
     `API_AUTH_TYPE`: `query` / `bearer` / `header`
     `API_AUTH_KEY`: `appid`, `client_id`
-    `OPEN_AI_ORG`: The organization ID for your account in openAI
+    `OPENAI_ORG`: The organization ID for your account in openAI
     `PORT`: 3000
 
 2. Copy example-pm2.json to pm2.json and set the fields to the values of choice.
