@@ -44,6 +44,8 @@ app.get('/') do(req,res,next)
 
 # catch-all route that returns our index.html
 app.all(/.*/) do(req,res)
+	if process.env.REQUIRED_PREFIX and !req.path.includes(process.env.REQUIRED_PREFIX)
+		return res.status(403).send('Unsupported api path in scrimba proxy')
 	let url = new URL(base)
 	url.pathname = req.path
 	let options = {}
@@ -63,6 +65,7 @@ app.all(/.*/) do(req,res)
 	if process.env.OPEN_AI_ORG # Should handle any extra header at some point.
 		headers['OpenAI-Organization'] = process.env.OPEN_AI_ORG
 
+	# TODO: Add caching of requests
 	let payload = await node-fetch(url,
 		method: req.method
 		body: ['POST', 'PUT'].includes(req.method) ? body : undefined
