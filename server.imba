@@ -17,13 +17,12 @@ unless raw_keys
 	process.exit(-1)
 
 const base = process.env.API_BASE
-unless raw_keys
+unless base
 	console.log "Please add API_BASE to your .env file"
 	process.exit(-1)
 
 const keys = raw_keys.split(',')
 let key-index = 0
-
 
 def pick-key
 	key-index = key-index + 1
